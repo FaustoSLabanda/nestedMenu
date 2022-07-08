@@ -1,0 +1,19 @@
+<div *ngIf="mainMenu">
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon aria-hidden="false" aria-label="Menu">menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <ng-container *ngFor="let item of mainMenu">
+      <button mat-menu-item>
+        <item-menu
+          [name]="item.name"
+          [id]="item.id"
+          *ngIf="data.hasChildren(item.id); else menuItem"
+        ></item-menu>
+      </button>
+      <ng-template #menuItem>
+        <button mat-menu-item>{{ item.name }}</button>
+      </ng-template>
+    </ng-container>
+  </mat-menu>
+</div>

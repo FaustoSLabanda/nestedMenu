@@ -1,0 +1,17 @@
+<button mat-menu-item [matMenuTriggerFor]="menu">
+  {{ name }}
+</button>
+<mat-menu #menu="matMenu">
+  <ng-container *ngFor="let item of dataItem; let i = index">
+    <button mat-menu-item>
+      <item-menu
+        *ngIf="data.hasChildren(item.id); else menuItem"
+        [name]="item.name"
+        [id]="item.id"
+      ></item-menu>
+    </button>
+    <ng-template #menuItem>
+      <button mat-menu-item>{{ item.name }}</button>
+    </ng-template>
+  </ng-container>
+</mat-menu>
